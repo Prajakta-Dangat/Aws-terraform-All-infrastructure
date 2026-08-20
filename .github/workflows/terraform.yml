@@ -35,20 +35,25 @@ jobs:
       # 4. Terraform Init
       - name: Terraform Init
         run: terraform init
-
+        working-directory: environment/dev
+        
       # 5. Terraform Format Check
       - name: Terraform Format
         run: terraform fmt -check
+        working-directory: environment/dev
 
       # 6. Terraform Validate
       - name: Terraform Validate
         run: terraform validate
+        working-directory: environment/dev
 
       # 7. Terraform Plan
       - name: Terraform Plan
         run: terraform plan
+        working-directory: environment/dev
 
       # 8. Terraform Apply
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
+        working-directory: environment/dev
